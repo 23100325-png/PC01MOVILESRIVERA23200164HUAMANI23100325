@@ -1,5 +1,6 @@
 package com.example.pc01movilesrivera23200164huamani23100325
-
+//Romario Huamani Paccaya
+//Alvaro Rivera Tarque
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
