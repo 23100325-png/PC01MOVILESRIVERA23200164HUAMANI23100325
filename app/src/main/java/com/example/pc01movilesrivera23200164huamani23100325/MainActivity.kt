@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.pc01movilesrivera23200164huamani23100325.ui.screens.CatalogScreen
+import com.example.pc01movilesrivera23200164huamani23100325.ui.screens.LocationPermissionScreen
+import com.example.pc01movilesrivera23200164huamani23100325.ui.screens.CountriesScreen
 import com.example.pc01movilesrivera23200164huamani23100325.ui.theme.PC01MOVILESRIVERA23200164HUAMANI23100325Theme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +20,39 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PC01MOVILESRIVERA23200164HUAMANI23100325Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                var currentScreen by remember { mutableStateOf(1) }
+
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = {
+                        BottomAppBar {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceEvenly,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Button(onClick = { currentScreen = 1 }) {
+                                    Text("Países")
+                                }
+                                Button(onClick = { currentScreen = 3 }) {
+                                    Text("Catálogo")
+                                }
+                                Button(onClick = { currentScreen = 4 }) {
+                                    Text("Ubicación")
+                                }
+                            }
+                        }
+                    }
+                ) { innerPadding ->
+                    Box(modifier = Modifier.padding(innerPadding)) {
+                        when (currentScreen) {
+                            1 -> CountriesScreen()
+                            3 -> CatalogScreen()
+                            4 -> LocationPermissionScreen()
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PC01MOVILESRIVERA23200164HUAMANI23100325Theme {
-        Greeting("Android")
     }
 }
