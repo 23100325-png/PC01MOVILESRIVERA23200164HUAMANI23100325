@@ -11,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.pc01movilesrivera23200164huamani23100325.ui.screens.CatalogScreen
 import com.example.pc01movilesrivera23200164huamani23100325.ui.screens.LocationPermissionScreen
-import com.example.pc01movilesrivera23200164huamani23100325.ui.screens.CountriesScreen
 import com.example.pc01movilesrivera23200164huamani23100325.ui.theme.PC01MOVILESRIVERA23200164HUAMANI23100325Theme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +19,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PC01MOVILESRIVERA23200164HUAMANI23100325Theme {
-                var currentScreen by remember { mutableStateOf(1) }
+                var currentScreen by remember { mutableStateOf(3) }
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -31,9 +30,6 @@ class MainActivity : ComponentActivity() {
                                 horizontalArrangement = Arrangement.SpaceEvenly,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Button(onClick = { currentScreen = 1 }) {
-                                    Text("Países")
-                                }
                                 Button(onClick = { currentScreen = 3 }) {
                                     Text("Catálogo")
                                 }
@@ -46,7 +42,6 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)) {
                         when (currentScreen) {
-                            1 -> CountriesScreen()
                             3 -> CatalogScreen()
                             4 -> LocationPermissionScreen()
                         }
